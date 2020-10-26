@@ -1,9 +1,13 @@
-import './App.css';
 import React from 'react';
+import GlobalStyles from './styles/GlobalStyles';
+import FlightTable from './components/FlightTable.js/FlightTable';
 
 function App() {
   return (
-    <div className="App" />
+    <>
+      <GlobalStyles />
+      <FlightTable/>
+    </>
   );
 }
 
