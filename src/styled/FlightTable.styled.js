@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Button, ButtonGroup, Container, FormCheck} from 'react-bootstrap';
-import mark from '../../assets/images/mark.svg';
+import mark from '../assets/images/mark.svg';
 
 export const Background = styled.div`
   background-color: #f3f7fa;

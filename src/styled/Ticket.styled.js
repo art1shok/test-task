@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Col, Row } from 'react-bootstrap';
 
 export const TicketWrapper = styled.div`
   padding: 30px 50px 20px 20px;

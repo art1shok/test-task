@@ -4,26 +4,23 @@ import {
   CardLogo,
   Price,
   TicketWrapper
-} from './Ticket.styled';
+} from '../../styled/Ticket.styled';
 import logo from '../../assets/images/logo.svg';
-import Route from '../Route/Route';
+import Way from '../Way/Way';
 
-const Ticket = () => {
-  return (
+const Ticket = () => (
+  <TicketWrapper>
+    <CardHead>
+      <Price>
+        13 400 Р
+      </Price>
+      <CardLogo src={logo} alt="logo"/>
 
-    <TicketWrapper>
-      <CardHead>
-        <Price>
-          13 400 Р
-        </Price>
-        <CardLogo src={logo} alt="logo"/>
+    </CardHead>
+    <Way/>
+    <Way/>
 
-      </CardHead>
-      <Route />
-      <Route />
-
-    </TicketWrapper>
-  );
-};
+  </TicketWrapper>
+);
 
 export default Ticket;
