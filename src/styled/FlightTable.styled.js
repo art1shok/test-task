@@ -1,9 +1,10 @@
 import styled from 'styled-components';
-import { Button, ButtonGroup, Container, FormCheck} from 'react-bootstrap';
-import mark from '../assets/images/mark.svg';
+import { Button, ButtonGroup, Container, FormCheck } from 'react-bootstrap';
+
+import { colors } from './Variables.styled';
 
 export const Background = styled.div`
-  background-color: #f3f7fa;
+  background-color: ${colors.backgroundColor};
   padding: 50px 0;
 `;
 
@@ -51,7 +52,7 @@ export const StyledCheckbox = styled(FormCheck)`
   padding: 10px 22px 6px;
 
   :hover {
-    background-color: #f1fcff;
+    background-color: ${colors.secondaryBackgroundColor};
   }
   
   & .form-check-label {
@@ -60,7 +61,7 @@ export const StyledCheckbox = styled(FormCheck)`
     font-size: 10px;
     line-height: 10px;
     
-    color: #4a4a4a;
+    color: ${colors.primaryTextColor};
   }
   
   & .form-check-input {
@@ -81,7 +82,7 @@ export const StyledCheckbox = styled(FormCheck)`
     display: inline-block;
     width: 20px;
     height: 20px;
-    border: 1px solid #9abbce;
+    border: 1px solid ${colors.checkboxBorderColor};
     margin-right: 10px;
     border-radius: 1px;
     background-repeat: no-repeat;
@@ -90,8 +91,8 @@ export const StyledCheckbox = styled(FormCheck)`
   }
   
   & .form-check-input:checked + .form-check-label::before {
-    border-color: #2196f3;
-    background-image: url(${mark});
+    border-color: ${colors.blueColor};
+    background-image: url('../assets/images/mark.svg');
   }
   
 `;
