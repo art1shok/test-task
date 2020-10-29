@@ -7,7 +7,7 @@ const GET_TICKETS = 'test-task/flights/GET_TICKETS';
 
 const initialState = {
   searchId: null,
-  ticketsInfo: null,
+  ticketsInfo: {},
   error: null
 };
 
@@ -25,7 +25,6 @@ const reducer = (state = initialState, action) => {
     }
 
     case GET_TICKETS: {
-      console.log(payload);
 
       return {
         ...state,
@@ -73,7 +72,7 @@ export function * sagaWorker () {
       yield call(apiService.getSearchId);
     const data =
       yield call(() => apiService.getTickets(result.searchId));
-    yield put(getTickets(data))
+    yield put(getTickets(data));
   } catch (e) {
     yield put(setError(e));
   }

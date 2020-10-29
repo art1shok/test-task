@@ -1,13 +1,16 @@
 import React from 'react';
-import GlobalStyles from './styled/GlobalStyles';
-import FlightTable from './components/FlightTable/FlightTable';
-import { BrowserRouter as Router,
+import {
+  BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { store } from './store/';
+
+import { FlightTable } from './components';
+import { store } from './redux/';
+
+import GlobalStyles from './styled/GlobalStyles';
 
 const App = () => (
   <Provider store={store}>
@@ -15,7 +18,7 @@ const App = () => (
       <GlobalStyles/>
       <Switch>
         <Route path='/' component={FlightTable}/>
-        <Redirect from="*" to="/" />
+        <Redirect from="*" to="/"/>
       </Switch>
     </Router>
   </Provider>

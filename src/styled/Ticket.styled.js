@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { colors } from './Variables.styled';
+
 export const TicketWrapper = styled.div`
   padding: 30px 50px 20px 20px;
   margin-bottom: 20px;
@@ -18,7 +20,7 @@ export const Price = styled.h2`
   font-size: 18px;
   margin-bottom: 0;
   line-height: 18px;
-  color: #2196f3;
+  color: ${colors.blueColor};
 `;
 
 export const CardLogo = styled.img`
