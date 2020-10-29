@@ -4,9 +4,8 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Ticket } from './Ticket';
-// import { selectTicketsInfo } from '../redux/selectors';
+import { selectTicketsInfo } from '../redux/selectors';
 import { getSearchId } from '../redux/flights';
-import { ticket } from '../mocks/ticket.mock'
 
 import {
   Background,
@@ -33,9 +32,7 @@ export const FlightTable = () => {
   const [sortType, setSortType] = useState('cheapest');
   const history = useHistory();
   const dispatch = useDispatch();
-  // TODO: remove comments when API is working
-  //const info = useSelector(selectTicketsInfo);
-  const info = ticket;
+  const ticketsInfo = useSelector(selectTicketsInfo);
 
   const paramsSet = useMemo(() => {
     const newParamsSet = {
@@ -85,10 +82,10 @@ export const FlightTable = () => {
 
   const filteredTickets = useMemo(() => {
     if (paramsSet['all'] || Object.values(paramsSet).every(item => !item)) {
-      return info;
+      return ticketsInfo.tickets;
     }
 
-    return info.filter((ticket) => {
+    return ticketsInfo.tickets.filter((ticket) => {
         let isAppropriate = false;
         Object.entries(paramsSet).forEach(([filterName, isActive]) => {
           if (isActive && ticket.segments.every(segment => segment.stops.length === filters[filterName])) {
@@ -99,7 +96,7 @@ export const FlightTable = () => {
       }
     );
 
-  }, [info, paramsSet]);
+  }, [ticketsInfo, paramsSet]);
 
   const sortedTickets = useMemo(() =>
       filteredTickets.sort(sortType === 'cheapest' ? sortCheapest : sortFastest),

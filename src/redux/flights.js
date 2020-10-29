@@ -7,7 +7,7 @@ const GET_TICKETS = 'test-task/flights/GET_TICKETS';
 
 const initialState = {
   searchId: null,
-  ticketsInfo: null,
+  ticketsInfo: {},
   error: null
 };
 

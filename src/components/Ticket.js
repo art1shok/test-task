@@ -12,7 +12,7 @@ export const Ticket = ({ price, route }) => (
   <TicketWrapper>
     <CardHead>
       <Price>
-        {`${price} Р`}
+        {`${price.toLocaleString()} Р`}
       </Price>
       <CardLogo src="../../../assets/images/logo.svg" alt="logo"/>
     </CardHead>
