@@ -1,11 +1,15 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { FormGroup } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import React, {useCallback,
+  useEffect,
+  useMemo,
+  useState
+} from 'react';
+import {FormGroup} from 'react-bootstrap';
+import {useHistory} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
 
-import { Ticket } from './Ticket';
-import { selectTicketsInfo } from '../redux/selectors';
-import { getSearchId } from '../redux/flights';
+import {Ticket} from './Ticket';
+import {selectTicketsInfo} from '../store/selectors';
+import {getSearchId} from '../store/flights';
 
 import {
   Background,
@@ -20,8 +24,22 @@ import {
   StyledText,
   TicketsContainer,
 } from '../styled/FlightTable.styled';
+import {TicketData} from "../store/flights.types";
 
-const filters = {
+enum Filter {
+  All = 'all',
+  None = 'none',
+  One = 'one',
+  Two = 'two',
+  Three = 'three',
+}
+
+enum SortType {
+  Cheapest = 'cheapest',
+  Fastest = 'fastest'
+}
+
+const filters: Record<string, number> = {
   none: 0,
   one: 1,
   two: 2,
@@ -29,13 +47,13 @@ const filters = {
 };
 
 export const FlightTable = () => {
-  const [sortType, setSortType] = useState('cheapest');
+  const [sortType, setSortType] = useState(SortType.Cheapest);
   const history = useHistory();
   const dispatch = useDispatch();
   const ticketsInfo = useSelector(selectTicketsInfo);
 
   const paramsSet = useMemo(() => {
-    const newParamsSet = {
+    const newParamsSet: Record<Filter, boolean> = {
       all: false,
       one: false,
       two: false,
@@ -46,7 +64,7 @@ export const FlightTable = () => {
     const paramsArr = history.location.search !== ''
       ? history.location.search.substring(1)
         .split('&')
-        .filter(item => item !== '')
+        .filter(item => item !== '') as Filter []
       : [];
 
     paramsArr.forEach(item => {
@@ -60,35 +78,41 @@ export const FlightTable = () => {
     dispatch(getSearchId());
   }, [dispatch]);
 
-  const handleChange = useCallback((e) => {
-    const { name } = e.target;
-    let queryString = '?';
 
-    Object.entries(paramsSet).forEach(([filter, isActive], index) => {
-      if ((filter === name && !isActive) || (filter !== name && isActive)) {
-        queryString += `${filter}&`;
-      }
-    });
+  const handleChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const {name} = event.target;
+      let queryString = '?';
 
-    history.push({
-      pathname: '/',
-      search: queryString
-    });
-  }, [history, paramsSet]);
+      Object.entries(paramsSet).forEach(([filter, isActive]) => {
+        if ((filter === name && !isActive) || (filter !== name && isActive)) {
+          queryString += `${filter}&`;
+        }
+      });
 
-  const sortCheapest = (a, b) => a.price > b.price ? 1 : -1;
+      history.push({
+        pathname: '/',
+        search: queryString
+      });
+    },
+    [history, paramsSet]
+  );
 
-  const sortFastest = (a, b) => a.segments[0].duration > b.segments[0].duration ? 1 : -1;
+  const sortCheapest = (a: TicketData, b: TicketData) => a.price > b.price ? 1 : -1;
+
+  const sortFastest = (a: TicketData, b: TicketData) => a.segments[0].duration > b.segments[0].duration ? 1 : -1;
 
   const filteredTickets = useMemo(() => {
     if (paramsSet['all'] || Object.values(paramsSet).every(item => !item)) {
       return ticketsInfo.tickets;
     }
 
-    return ticketsInfo.tickets.filter((ticket) => {
+    return ticketsInfo.tickets.filter((ticket: TicketData) => {
         let isAppropriate = false;
         Object.entries(paramsSet).forEach(([filterName, isActive]) => {
-          if (isActive && ticket.segments.every(segment => segment.stops.length === filters[filterName])) {
+          if (isActive &&
+            ticket.segments
+              .every(segment => segment.stops.length === filters[filterName])) {
             isAppropriate = true;
           }
         });
@@ -99,12 +123,11 @@ export const FlightTable = () => {
   }, [ticketsInfo, paramsSet]);
 
   const sortedTickets = useMemo(() =>
-      filteredTickets.sort(sortType === 'cheapest' ? sortCheapest : sortFastest),
+      filteredTickets.sort(sortType === SortType.Cheapest ? sortCheapest : sortFastest),
     [filteredTickets, sortType]
   );
 
-
-  const getVariant = (type) => sortType === type ? 'primary' : 'light';
+  const getVariant = (type: SortType) => sortType === type ? 'primary' : 'light';
 
   return (
     <Background>
@@ -164,19 +187,19 @@ export const FlightTable = () => {
           <TicketsContainer>
             <ButtonContainer size="lg">
               <StyledButton
-                variant={getVariant('cheapest')}
-                onClick={() => setSortType('cheapest')}
+                variant={getVariant(SortType.Cheapest)}
+                onClick={() => setSortType(SortType.Cheapest)}
               >
                 Самый дешевый
               </StyledButton>
               <StyledButton
-                variant={getVariant('fastest')}
-                onClick={() => setSortType('fastest')}
+                variant={getVariant(SortType.Fastest)}
+                onClick={() => setSortType(SortType.Fastest)}
               >
                 Самый быстрый
               </StyledButton>
             </ButtonContainer>
-            {sortedTickets && sortedTickets.slice(0, 5).map((item, index) => (
+            {sortedTickets && sortedTickets.slice(0, 5).map((item: any, index: number) => (
               <Ticket
                 key={index}
                 price={item.price}
