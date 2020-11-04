@@ -9,7 +9,7 @@ class ApiService {
     return this.instance.get('search').then(res => res.data);
   };
 
-  getTickets = (data) => {
+  getTickets = (data: string) => {
     return this.instance.get(`tickets?searchId=${data}`).then(res => res.data);
   };
 }

@@ -8,7 +8,7 @@ import {
 import { Provider } from 'react-redux';
 
 import { FlightTable } from './components';
-import { store } from './redux/';
+import { store } from './store/';
 
 import GlobalStyles from './styled/GlobalStyles';
 
