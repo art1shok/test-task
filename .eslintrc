@@ -1,0 +1,62 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "prettier/react",
+    "airbnb",
+    "plugin:react-hooks/recommended"
+  ],
+  "env": {
+    "jest": true,
+    "browser": true,
+    "node": true
+  },
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-trailing-spaces": "error",
+    "no-shadow": 0,
+    "no-console": "error",
+    "no-debugger": "error",
+    "no-underscore-dangle": 0,
+    "no-use-before-define": 0,
+    "react/react-in-jsx-scope": 0,
+    "react/jsx-props-no-multi-spaces": 2,
+    "react/prop-types": 0,
+    "react/jsx-fragments": [0, "element"],
+    "react/jsx-filename-extension": 0,
+    "react/no-array-index-key": 0,
+    "object-curly-spacing": [2, "always"],
+    "import/prefer-default-export": 0,
+    "import/extensions": 0,
+    "import/no-unresolved": 0,
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+    "implicit-arrow-linebreak": 0,
+    "@typescript-eslint/explicit-module-boundary-types" : 0,
+    "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/unbound-method": "warn"
+  },
+  "plugins": ["@typescript-eslint", "prettier", "react", "react-hooks"],
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".ts", ".tsx"],
+        "paths": ["src/"]
+      }
+    },
+    "react": {
+      "version": "detect"
+    }
+  }
+}
+

@@ -11,7 +11,7 @@ export const RouteContainer = styled(Row)`
 export const RouteDataContainer = styled(Col)`
  && {
    padding: 0;
-   margin: 0;
+   margin: 0; 
  }
 `;
 
@@ -28,8 +28,3 @@ export const RouteDataStyled = styled.h3`
   line-height: 10px;  
   color: ${colors.primaryTextColor};
 `;
-
-
-
-
-

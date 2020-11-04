@@ -1,5 +1,7 @@
 import styled from 'styled-components';
-import { Button, ButtonGroup, Container, FormCheck } from 'react-bootstrap';
+import {
+  Button, ButtonGroup, Container, FormCheck,
+} from 'react-bootstrap';
 
 import { colors } from './Variables.styled';
 
@@ -55,7 +57,7 @@ export const StyledCheckbox = styled(FormCheck)`
     background-color: ${colors.secondaryBackgroundColor};
   }
   
-  & .form-check-label {
+  & .form-check-label { 
       cursor: pointer;
 
     font-size: 10px;

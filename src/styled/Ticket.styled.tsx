@@ -6,7 +6,7 @@ export const TicketWrapper = styled.div`
   padding: 30px 50px 20px 20px;
   margin-bottom: 20px;
   background-color: #fff;
-  border-radius: 3px;
+  border-radius: 3px;   
 `;
 
 export const CardHead = styled.div`

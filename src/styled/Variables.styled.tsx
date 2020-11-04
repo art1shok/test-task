@@ -4,7 +4,7 @@ const size = {
   mobileL: '425px',
   tablet: '768px',
   laptop: '1024px',
-  desktop: '1440px'
+  desktop: '1440px',
 };
 
 export const device = {
@@ -22,5 +22,5 @@ export const colors = {
   primaryTextColor: '#4a4a4a',
   secondaryTextColor: '#a0b0b9',
   checkboxBorderColor: '#9abbce',
-  blueColor: '#2196f3'
+  blueColor: '#2196f3',
 };

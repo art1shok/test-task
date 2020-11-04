@@ -1,49 +1,44 @@
-import {put, call, takeEvery} from 'redux-saga/effects';
-import {apiService} from '../api/apiService';
+import { put, call, takeEvery } from 'redux-saga/effects';
+import { apiService } from '../api/apiService';
 import {
   FlightsActionTypes,
   FlightsState,
   GetTicketsAction,
   SetErrorAction,
-  TicketsInfo
-} from "./flights.types";
+  TicketsInfo,
+} from './flights.types';
 
-const SET_ERROR = 'test-task/flights/SET_ERROR';
-const GET_SEARCH_ID = 'test-task/flights/GET_SEARCH_ID';
-const GET_TICKETS = 'test-task/flights/GET_TICKETS';
+export const SET_ERROR = 'test-task/flights/SET_ERROR';
+export const GET_SEARCH_ID = 'test-task/flights/GET_SEARCH_ID';
+export const GET_TICKETS = 'test-task/flights/GET_TICKETS';
 
 const initialState: FlightsState = {
   ticketsInfo: {
     tickets: [],
-    stop: true
+    stop: true,
   },
-  error: null
+  error: null,
 };
 
-const reducer = (
+const flightsReducer = (
   state = initialState,
-  action: FlightsActionTypes
+  action: FlightsActionTypes,
 ): FlightsState => {
-
   switch (action.type) {
-
     case GET_SEARCH_ID: {
-
       return {
-        ...state
+        ...state,
       };
     }
 
     case GET_TICKETS: {
-
       return {
         ...state,
-        ticketsInfo: (action as GetTicketsAction).payload
+        ticketsInfo: (action as GetTicketsAction).payload,
       };
     }
 
     case SET_ERROR: {
-
       return {
         ...state,
         error: (action as SetErrorAction).payload,
@@ -55,7 +50,7 @@ const reducer = (
   }
 };
 
-export default reducer;
+export default flightsReducer;
 
 export const getSearchId = () => ({
   type: GET_SEARCH_ID,
@@ -63,7 +58,7 @@ export const getSearchId = () => ({
 
 export const getTickets = (data: TicketsInfo) => ({
   type: GET_TICKETS,
-  payload: data
+  payload: data,
 });
 
 export const setError = (error: any) => ({
@@ -77,12 +72,10 @@ export function* sagaWatcher() {
 
 export function* sagaWorker() {
   try {
-    const result =
-      yield call(apiService.getSearchId);
-    const data =
-      yield call(() => apiService.getTickets(result.searchId));
+    const result = yield call(apiService.getSearchId);
+    const data = yield call(() => apiService.getTickets(result.searchId));
     yield put(getTickets(data));
-  } catch (e) {
-    yield put(setError(e.message));
+  } catch (error) {
+    yield put(setError(error.message));
   }
 }
