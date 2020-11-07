@@ -1,13 +1,14 @@
 import React from 'react';
 import { shallow, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import 'jest-enzyme';
 
 import 'jest-styled-components';
 
-import { RouteData } from './RouteData';
+import { RouteData } from '../../../components';
 import {
   RouteContainer,
-} from '../../styled/RouteData.styled';
+} from '../../../styled/RouteData.styled';
 
 configure({ adapter: new Adapter() });
 

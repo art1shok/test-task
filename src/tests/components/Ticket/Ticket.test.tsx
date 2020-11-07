@@ -2,11 +2,16 @@ import React from 'react';
 import { shallow, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import 'jest-styled-components';
+import 'jest-enzyme';
 
-import { Ticket } from './Ticket';
-import { Segment } from '../../store/flights.types';
+import { Ticket } from '../../../components';
+import { Segment } from '../../../store/flights.types';
+import { CardLogo, Price, TicketWrapper } from '../../../styled/Ticket.styled';
 
-configure({ adapter: new Adapter() });
+configure({
+  adapter: new Adapter(),
+  disableLifecycleMethods: true,
+});
 
 const ticket = {
   price: 1120,
@@ -47,19 +52,19 @@ describe('should render Ticket component', () => {
   });
 
   it('should contain wrapper', () => {
-    const wrapper = component.find('#wrapper');
+    const wrapper = component.find(TicketWrapper);
     expect(wrapper.length).toBe(1);
   });
 
   it('should contain correct format price', () => {
     const ticketPrice = '1,120 Р';
-    const price = component.find('#price');
+    const price = component.find(Price);
 
     expect(price.text()).toBe(ticketPrice.toLocaleString());
   });
 
   it('should contain logo', () => {
-    const image = component.find('#img');
+    const image = component.find(CardLogo);
     expect(image.length).toBe(1);
   });
 });

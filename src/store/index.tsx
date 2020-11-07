@@ -6,7 +6,7 @@ import flights, { sagaWatcher } from './flights';
 
 const saga = createSagaMiddleware();
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   flights,
 });
 

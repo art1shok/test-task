@@ -6,10 +6,10 @@ import {
   getTickets,
   sagaWatcher,
   sagaWorker,
-} from '../flights';
+} from '../../store/flights';
 
 import { apiService } from '../../api/apiService';
-import { TicketsInfo } from '../flights.types';
+import { TicketsInfo } from '../../store/flights.types';
 
 const ticketResponse: TicketsInfo = {
   tickets: [
@@ -43,7 +43,7 @@ const ticketResponse: TicketsInfo = {
   stop: false,
 };
 
-describe('Reducer tests for actions and sagas', () => {
+describe('Reducer store for actions and sagas', () => {
   const genObject = sagaWatcher();
 
   it('Should wait for GET_SEARCH_ID action and call sagaWorker', () => {

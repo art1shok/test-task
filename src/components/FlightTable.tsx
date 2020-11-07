@@ -8,9 +8,9 @@ import { FormGroup } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Ticket } from '../Ticket/Ticket';
-import { selectTicketsInfo } from '../../store/selectors';
-import { getSearchId } from '../../store/flights';
+import { Ticket } from './Ticket';
+import { selectTicketsInfo } from '../store/selectors';
+import { getSearchId } from '../store/flights';
 
 import {
   Background,
@@ -24,8 +24,8 @@ import {
   StyledContainer,
   StyledText,
   TicketsContainer,
-} from '../../styled/FlightTable.styled';
-import { TicketData } from '../../store/flights.types';
+} from '../styled/FlightTable.styled';
+import { TicketData } from '../store/flights.types';
 
 enum Filter {
   All = 'all',

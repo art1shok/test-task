@@ -1,6 +1,6 @@
-### `npm run start`
+### `yarn start`
 
-### `npm run test`
+### `yarn test`
 
-### `npm run build`
+### `yarn build`
 

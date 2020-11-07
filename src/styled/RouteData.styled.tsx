@@ -1,18 +1,29 @@
-import styled from 'styled-components';
-import { Col, Row } from 'react-bootstrap';
+import styled from 'styled-components/macro';
 
-import { colors } from './Variables.styled';
+import { colors, device } from './Variables.styled';
 
-export const RouteContainer = styled(Row)`
- padding-left: 15px;
+export const RouteContainer = styled.div`
+ display: flex;
+ justify-content: space-between;
  margin-bottom: 20px;
+ padding-right: 20px;
+ 
+  @media screen and ${device.tablet} {
+   padding-right: 0;
+   justify-content: space-around;
+  }
 `;
 
-export const RouteDataContainer = styled(Col)`
+export const RouteDataContainer = styled.div`
+ min-width: 70px;
  && {
    padding: 0;
    margin: 0; 
  }
+  @media screen and ${device.tablet} {
+    min-width: calc(100%/3);
+    text-align: center;
+  }
 `;
 
 export const RouteDescription = styled.h3`

@@ -22,8 +22,8 @@
   "rules": {
     "no-trailing-spaces": "error",
     "no-shadow": 0,
-    "no-console": "error",
-    "no-debugger": "error",
+    "no-console": "warn",
+    "no-debugger": "warn",
     "no-underscore-dangle": 0,
     "no-use-before-define": 0,
     "react/react-in-jsx-scope": 0,

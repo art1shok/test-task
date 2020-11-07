@@ -4,7 +4,7 @@ import {
   RouteDataStyled,
   RouteDataContainer,
   RouteDescription,
-} from '../../styled/RouteData.styled';
+} from '../styled/RouteData.styled';
 
 interface Props {
   way: string;
@@ -60,9 +60,7 @@ export const RouteData: FC<Props> = ({
   const transfers = handleStops(stops);
 
   return (
-    <RouteContainer
-      md={{ span: 4 }}
-    >
+    <RouteContainer>
       <RouteDataContainer>
         <RouteDescription className="way">{way}</RouteDescription>
         <RouteDataStyled className="time">
@@ -70,14 +68,14 @@ export const RouteData: FC<Props> = ({
         </RouteDataStyled>
       </RouteDataContainer>
 
-      <RouteDataContainer md={{ span: 4 }}>
+      <RouteDataContainer>
         <RouteDescription>В пути</RouteDescription>
         <RouteDataStyled>
           {`${flightHours}ч ${flightMinutes}м`}
         </RouteDataStyled>
       </RouteDataContainer>
 
-      <RouteDataContainer md={{ span: 3 }}>
+      <RouteDataContainer>
         <RouteDescription className="stops">
           {transfers}
         </RouteDescription>
