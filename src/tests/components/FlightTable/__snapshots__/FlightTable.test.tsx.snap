@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App component Flight Table render correctly 1`] = `
+<div
+  className="FlightTablestyled__Background-sc-1vwjd7g-0 igErIY"
+>
+  <FlightTablestyled__StyledContainer>
+    <FlightTablestyled__ImageContainer>
+      <FlightTablestyled__Image
+        alt="plane"
+        src="../assets/images/plane.svg"
+      />
+    </FlightTablestyled__ImageContainer>
+    <FlightTablestyled__FilterContainer>
+      <FlightTablestyled__CheckboxContainer>
+        <FlightTablestyled__StyledText>
+          Колличество пересадок
+        </FlightTablestyled__StyledText>
+        <FormGroup
+          controlId="formBasicCheckbox"
+        >
+          <FlightTablestyled__StyledCheckbox
+            checked={false}
+            id="all"
+            label="Все"
+            name="all"
+            onChange={[Function]}
+            type="checkbox"
+          />
+          <FlightTablestyled__StyledCheckbox
+            checked={false}
+            id="none"
+            label="Без пересадок"
+            name="none"
+            onChange={[Function]}
+            type="checkbox"
+          />
+          <FlightTablestyled__StyledCheckbox
+            checked={false}
+            id="one"
+            label="1 пересадка"
+            name="one"
+            onChange={[Function]}
+            type="checkbox"
+          />
+          <FlightTablestyled__StyledCheckbox
+            checked={false}
+            id="two"
+            label="2 пересадки"
+            name="two"
+            onChange={[Function]}
+            type="checkbox"
+          />
+          <FlightTablestyled__StyledCheckbox
+            checked={false}
+            id="three"
+            label="3 пересадки"
+            name="three"
+            onChange={[Function]}
+            type="checkbox"
+          />
+        </FormGroup>
+      </FlightTablestyled__CheckboxContainer>
+      <FlightTablestyled__TicketsContainer>
+        <FlightTablestyled__ButtonContainer
+          size="lg"
+        >
+          <FlightTablestyled__StyledButton
+            onClick={[Function]}
+            variant="primary"
+          >
+            Самый дешевый
+          </FlightTablestyled__StyledButton>
+          <FlightTablestyled__StyledButton
+            onClick={[Function]}
+            variant="light"
+          >
+            Самый быстрый
+          </FlightTablestyled__StyledButton>
+        </FlightTablestyled__ButtonContainer>
+      </FlightTablestyled__TicketsContainer>
+    </FlightTablestyled__FilterContainer>
+  </FlightTablestyled__StyledContainer>
+</div>
+`;

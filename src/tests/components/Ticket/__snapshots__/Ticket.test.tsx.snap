@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Ticket component Ticket component renders correctly 1`] = `
+<Ticketstyled__TicketWrapper>
+  <Ticketstyled__CardHead>
+    <Ticketstyled__Price>
+      1,120 Р
+    </Ticketstyled__Price>
+    <Ticketstyled__CardLogo
+      alt="logo"
+      src="../../../assets/images/logo.svg"
+    />
+  </Ticketstyled__CardHead>
+  <RouteData
+    date="10/03/2017 07:29:46-0700"
+    duration={1200}
+    key="0"
+    stops={
+      Array [
+        "JAK",
+        "DAV",
+      ]
+    }
+    way="MAK - MAV"
+  />
+  <RouteData
+    date="10/03/2017 07:29:46-0700"
+    duration={1890}
+    key="1"
+    stops={
+      Array [
+        "DWV",
+        "DAV",
+      ]
+    }
+    way="MAV - MAK"
+  />
+</Ticketstyled__TicketWrapper>
+`;

@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render RouteData component RouteData component renders correctly 1`] = `
+<RouteDatastyled__RouteContainer>
+  <RouteDatastyled__RouteDataContainer>
+    <RouteDatastyled__RouteDescription
+      className="way"
+    >
+      MAK - MAV
+    </RouteDatastyled__RouteDescription>
+    <RouteDatastyled__RouteDataStyled
+      className="time"
+    >
+      17:29 - 13:29
+    </RouteDatastyled__RouteDataStyled>
+  </RouteDatastyled__RouteDataContainer>
+  <RouteDatastyled__RouteDataContainer>
+    <RouteDatastyled__RouteDescription>
+      В пути
+    </RouteDatastyled__RouteDescription>
+    <RouteDatastyled__RouteDataStyled>
+      20ч 0м
+    </RouteDatastyled__RouteDataStyled>
+  </RouteDatastyled__RouteDataContainer>
+  <RouteDatastyled__RouteDataContainer>
+    <RouteDatastyled__RouteDescription
+      className="stops"
+    >
+      2 пересадки
+    </RouteDatastyled__RouteDescription>
+    <RouteDatastyled__RouteDataStyled
+      className="transfers"
+    >
+      JAK, DAV
+    </RouteDatastyled__RouteDataStyled>
+  </RouteDatastyled__RouteDataContainer>
+</RouteDatastyled__RouteContainer>
+`;
