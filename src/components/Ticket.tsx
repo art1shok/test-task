@@ -1,13 +1,13 @@
-import React, {FC} from 'react';
-import {RouteData} from './RouteData';
+import React, { FC } from 'react';
+import { RouteData } from './RouteData';
 
 import {
   CardHead,
   CardLogo,
   Price,
-  TicketWrapper
+  TicketWrapper,
 } from '../styled/Ticket.styled';
-import {Segment} from "../store/flights.types";
+import { Segment } from '../store/flights.types';
 
 interface Props {
   price: number;
@@ -17,13 +17,16 @@ interface Props {
   ]
 }
 
-export const Ticket: FC<Props> = ({price, route}) => (
+export const Ticket: FC<Props> = ({ price, route }) => (
   <TicketWrapper>
     <CardHead>
       <Price>
-        {`${price.toLocaleString()} Р`}
+        {`${price.toLocaleString()} Р` }
       </Price>
-      <CardLogo src="../../../assets/images/logo.svg" alt="logo"/>
+      <CardLogo
+        src="../../../assets/images/logo.svg"
+        alt="logo"
+      />
     </CardHead>
     {route && route.map((item: any, index: number) => (
       <RouteData
@@ -36,4 +39,3 @@ export const Ticket: FC<Props> = ({price, route}) => (
     ))}
   </TicketWrapper>
 );
-

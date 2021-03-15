@@ -1,4 +1,4 @@
-import {RootState} from "./index";
+import { RootState } from './index';
 
-export const selectTicketsInfo = ({flights}: RootState) =>
+export const selectTicketsInfo = ({ flights }: RootState) =>
   flights.ticketsInfo;

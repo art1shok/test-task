@@ -1,15 +1,16 @@
-import React, {useCallback,
+import React, {
+  useCallback,
   useEffect,
   useMemo,
-  useState
+  useState,
 } from 'react';
-import {FormGroup} from 'react-bootstrap';
-import {useHistory} from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
+import { FormGroup } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
-import {Ticket} from './Ticket';
-import {selectTicketsInfo} from '../store/selectors';
-import {getSearchId} from '../store/flights';
+import { Ticket } from './Ticket';
+import { selectTicketsInfo } from '../store/selectors';
+import { getSearchId } from '../store/flights';
 
 import {
   Background,
@@ -24,7 +25,7 @@ import {
   StyledText,
   TicketsContainer,
 } from '../styled/FlightTable.styled';
-import {TicketData} from "../store/flights.types";
+import { TicketData } from '../store/flights.types';
 
 enum Filter {
   All = 'all',
@@ -64,76 +65,80 @@ export const FlightTable = () => {
     const paramsArr = history.location.search !== ''
       ? history.location.search.substring(1)
         .split('&')
-        .filter(item => item !== '') as Filter []
+        .filter((item) => item !== '') as Filter []
       : [];
 
-    paramsArr.forEach(item => {
+    paramsArr.forEach((item) => {
       newParamsSet[item] = true;
-    })
+    });
     return newParamsSet;
-
   }, [history.location.search]);
 
   useEffect(() => {
     dispatch(getSearchId());
   }, [dispatch]);
 
-
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      const {name} = event.target;
+      const { name } = event.target;
       let queryString = '?';
 
-      Object.entries(paramsSet).forEach(([filter, isActive]) => {
-        if ((filter === name && !isActive) || (filter !== name && isActive)) {
-          queryString += `${filter}&`;
-        }
-      });
+      Object.entries(paramsSet)
+        .forEach(([filter, isActive]) => {
+          if ((filter === name && !isActive)
+          || (filter !== name && isActive)) {
+            queryString += `${filter}&`;
+          }
+        });
 
       history.push({
         pathname: '/',
-        search: queryString
+        search: queryString,
       });
     },
-    [history, paramsSet]
+    [history, paramsSet],
   );
 
-  const sortCheapest = (a: TicketData, b: TicketData) => a.price > b.price ? 1 : -1;
+  const sortCheapest = (a: TicketData, b: TicketData) =>
+    (a.price > b.price ? 1 : -1);
 
-  const sortFastest = (a: TicketData, b: TicketData) => a.segments[0].duration > b.segments[0].duration ? 1 : -1;
+  const sortFastest = (a: TicketData, b: TicketData) =>
+    (a.segments[0].duration > b.segments[0].duration ? 1 : -1);
 
   const filteredTickets = useMemo(() => {
-    if (paramsSet['all'] || Object.values(paramsSet).every(item => !item)) {
+    if (paramsSet.all || Object.values(paramsSet)
+      .every((item) => !item)) {
       return ticketsInfo.tickets;
     }
 
-    return ticketsInfo.tickets.filter((ticket: TicketData) => {
+    return ticketsInfo.tickets
+      .filter((ticket: TicketData) => {
         let isAppropriate = false;
-        Object.entries(paramsSet).forEach(([filterName, isActive]) => {
-          if (isActive &&
-            ticket.segments
-              .every(segment => segment.stops.length === filters[filterName])) {
-            isAppropriate = true;
-          }
-        });
+        Object.entries(paramsSet)
+          .forEach(([filterName, isActive]) => {
+            if (isActive
+          && ticket.segments
+            .every((segment) =>
+              segment.stops.length === filters[filterName])) {
+              isAppropriate = true;
+            }
+          });
         return isAppropriate;
-      }
-    );
-
+      });
   }, [ticketsInfo, paramsSet]);
 
   const sortedTickets = useMemo(() =>
-      filteredTickets.sort(sortType === SortType.Cheapest ? sortCheapest : sortFastest),
-    [filteredTickets, sortType]
-  );
+    filteredTickets.sort(sortType === SortType.Cheapest
+      ? sortCheapest : sortFastest),
+  [filteredTickets, sortType]);
 
-  const getVariant = (type: SortType) => sortType === type ? 'primary' : 'light';
+  const getVariant = (type: SortType) => (sortType === type ? 'primary' : 'light');
 
   return (
     <Background>
       <StyledContainer>
         <ImageContainer>
-          <Image src="../assets/images/plane.svg" alt="plane"/>
+          <Image src="../assets/images/plane.svg" alt="plane" />
         </ImageContainer>
 
         <FilterContainer>
@@ -147,7 +152,7 @@ export const FlightTable = () => {
                 label="Все"
                 id="all"
                 name="all"
-                checked={paramsSet['all']}
+                checked={paramsSet.all}
                 onChange={handleChange}
               />
               <StyledCheckbox
@@ -155,7 +160,7 @@ export const FlightTable = () => {
                 label="Без пересадок"
                 id="none"
                 name="none"
-                checked={paramsSet['none']}
+                checked={paramsSet.none}
                 onChange={handleChange}
               />
               <StyledCheckbox
@@ -163,7 +168,7 @@ export const FlightTable = () => {
                 label="1 пересадка"
                 name="one"
                 id="one"
-                checked={paramsSet['one']}
+                checked={paramsSet.one}
                 onChange={handleChange}
               />
               <StyledCheckbox
@@ -171,7 +176,7 @@ export const FlightTable = () => {
                 label="2 пересадки"
                 name="two"
                 id="two"
-                checked={paramsSet['two']}
+                checked={paramsSet.two}
                 onChange={handleChange}
               />
               <StyledCheckbox
@@ -179,7 +184,7 @@ export const FlightTable = () => {
                 label="3 пересадки"
                 name="three"
                 id="three"
-                checked={paramsSet['three']}
+                checked={paramsSet.three}
                 onChange={handleChange}
               />
             </FormGroup>
@@ -206,7 +211,6 @@ export const FlightTable = () => {
                 route={item.segments}
               />
             ))}
-
           </TicketsContainer>
         </FilterContainer>
       </StyledContainer>

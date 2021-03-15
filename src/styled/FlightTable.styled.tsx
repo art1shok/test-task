@@ -1,7 +1,9 @@
-import styled from 'styled-components';
-import { Button, ButtonGroup, Container, FormCheck } from 'react-bootstrap';
+import styled from 'styled-components/macro';
+import {
+  Button, ButtonGroup, Container, FormCheck,
+} from 'react-bootstrap';
 
-import { colors } from './Variables.styled';
+import { colors, device } from './Variables.styled';
 
 export const Background = styled.div`
   background-color: ${colors.backgroundColor};
@@ -11,6 +13,7 @@ export const Background = styled.div`
 export const StyledContainer = styled(Container)`
   display: flex;
   flex-direction: column;
+  padding: 0;
 `;
 
 export const ImageContainer = styled.div`
@@ -27,6 +30,20 @@ export const Image = styled.img`
 export const FilterContainer = styled.div`
   display: flex;
   margin: 0 auto;
+  @media screen and ${device.laptop} {
+    margin: 0;
+  }
+  
+  @media screen and ${device.tablet} {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+    width: 100%;
+  }
+  
+   @media screen and ${device.mobileL} {
+    padding: 0 10px;
+  }
 `;
 
 export const CheckboxContainer = styled.div`
@@ -34,9 +51,15 @@ export const CheckboxContainer = styled.div`
   max-height: 252px;
   margin-right: 20px;
   padding-top: 22px;
-  
+
   background-color: #fff;
   border-radius: 3px;
+  
+  @media screen and ${device.tablet} {
+   width: 100%;
+   margin-bottom: 20px;
+   margin-right: 0;
+  }
 `;
 
 export const StyledText = styled.h3`
@@ -49,34 +72,33 @@ export const StyledText = styled.h3`
 `;
 
 export const StyledCheckbox = styled(FormCheck)`
-  padding: 10px 22px 6px;
+  padding: 4px 22px 0;
 
   :hover {
     background-color: ${colors.secondaryBackgroundColor};
   }
-  
-  & .form-check-label {
-      cursor: pointer;
 
+  & .form-check-label {
+    cursor: pointer;
+    width: 100%;
     font-size: 10px;
-    line-height: 10px;
-    
+    line-height: 36px;
+
     color: ${colors.primaryTextColor};
   }
-  
+
   & .form-check-input {
     position: absolute;
     z-index: -1;
     opacity: 0;
   }
-  
+
   & .form-check-input + .form-check-label {
     display: inline-flex;
     align-items: center;
     user-select: none;
-
   }
-  
+
   & .form-check-input + .form-check-label::before {
     content: '';
     display: inline-block;
@@ -89,26 +111,35 @@ export const StyledCheckbox = styled(FormCheck)`
     background-position: center center;
     background-size: 50% 50%;
   }
-  
+
   & .form-check-input:checked + .form-check-label::before {
     border-color: ${colors.blueColor};
-    background-image: url('../assets/images/mark.svg');
+    background-image: url(${`${window.location.origin}/assets/images/mark.svg`});
   }
-  
 `;
 
 export const TicketsContainer = styled.div`
-
+ @media screen and ${device.tablet} {
+    width: 100%;
+  }
 `;
 
 export const ButtonContainer = styled(ButtonGroup)`
   margin-bottom: 20px;
+  
+  @media screen and ${device.tablet} {
+    width: 100%;
+  }
 `;
 
 export const StyledButton = styled(Button)`
   width: 252px;
-  
+
   && {
     font-size: 10px;
+  }
+  @media screen and ${device.tablet} {
+    max-width: 252px;
+    width: 100%;
   }
 `;

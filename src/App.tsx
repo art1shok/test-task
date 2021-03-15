@@ -8,17 +8,17 @@ import {
 import { Provider } from 'react-redux';
 
 import { FlightTable } from './components';
-import { store } from './store/';
+import { store } from './store';
 
 import GlobalStyles from './styled/GlobalStyles';
 
 const App = () => (
   <Provider store={store}>
     <Router>
-      <GlobalStyles/>
+      <GlobalStyles />
       <Switch>
-        <Route path='/' component={FlightTable}/>
-        <Redirect from="*" to="/"/>
+        <Route path="/" component={FlightTable} />
+        <Redirect from="*" to="/" />
       </Switch>
     </Router>
   </Provider>

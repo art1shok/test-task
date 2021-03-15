@@ -1,12 +1,16 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
-import { colors } from './Variables.styled';
+import { colors, device } from './Variables.styled';
 
 export const TicketWrapper = styled.div`
   padding: 30px 50px 20px 20px;
   margin-bottom: 20px;
   background-color: #fff;
-  border-radius: 3px;
+  border-radius: 3px;   
+  
+  @media screen and ${device.tablet} {
+   padding: 30px 20px;
+  }
 `;
 
 export const CardHead = styled.div`
